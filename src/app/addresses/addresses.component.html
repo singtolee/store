@@ -1,3 +1,11 @@
-<p>
-  addresses works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-9">
+      <label>Add more locations...HIT ENTER</label>
+      <input class="form-control" type="text" placeholder="add a new Office Building" (keyup.enter)="addNewItem($event.target.value)"[(ngModel)]="newItem">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-info" *ngFor="let item of items | async"><button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(item.$key)">DELETE</button> {{item.$value}}</a>
+      </div>
+    </div>
+  </div>
+</div>

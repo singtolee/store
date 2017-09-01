@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from './product';
 
 @Component({
   selector: 'app-upload',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  constructor() { }
+  private newPrd:Product;
+
+  constructor() {
+    this.newPrd = new Product();
+  }
 
   ngOnInit() {
   }
