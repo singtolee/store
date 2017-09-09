@@ -2,9 +2,9 @@ export class Product{
     name:string;
     id:string;
     descrp:string;
-    price:number;
+    price:number=0;
     pack:string;
     isRefundable:boolean;
     supplier:string;
-    category:string;
+    category:string="Accessories";
 }

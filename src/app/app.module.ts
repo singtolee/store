@@ -15,6 +15,7 @@ import { ConsoleComponent } from './console/console.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
+import { FileDropDirective } from './file-drop.directive';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOL_GgaWIYbQAdSvZzF0RH9w8nnQRG_jU",
@@ -31,7 +32,8 @@ export const firebaseConfig = {
     ConsoleComponent,
     AddressesComponent,
     LoginComponent,
-    UploadComponent
+    UploadComponent,
+    FileDropDirective
   ],
   imports: [
     BrowserModule,
