@@ -26,7 +26,7 @@ export class UploadComponent implements OnInit {
 
   private newPrd:Product;
 
-  constructor(public afAuth:AngularFireAuth,public af:AngularFireDatabase) {
+  constructor(public afAuth:AngularFireAuth,public af:AngularFireDatabase,private uploadService: UploadimgService) {
     this.newPrd = new Product();
     this.cates = af.list('/ProductCategory');
     this.suppliers = af.list('/Supplers');
@@ -37,13 +37,17 @@ export class UploadComponent implements OnInit {
   }
 
   handleDrop(fileList: FileList) {
-    let fileIndex = _.range(fileList.length)
 
-    _.each(fileIndex,(idx)=>{
-      this.currentUpload = new Imgupload(fileList[idx],this.pCate,this.pID);
-      this.uploadService.pushUpload(this.currentUpload);
-      this.prdImgUrls = this.af.list(`zIMGTEMPURLS/${this.pCate}/${this.pID}`);
-    })
+    let fileIndex = _.range(fileList.length)
+    
+        _.each(fileIndex,(idx)=>{
+          this.currentUpload = new Imgupload(fileList[idx],this.newPrd.category,this.newPrd.id);
+          this.uploadService.pushUpload(this.currentUpload);
+          //this.prdImgUrls = this.af.list(`zIMGTEMPURLS/${this.pCate}/${this.pID}`);
+        })
+
+    //this.currentUpload = new Imgupload(img,this.newPrd.category,this.newPrd.id);
+    //this.uploadService.pushUpload(this.currentUpload);
   }
 
   ngOnInit() {

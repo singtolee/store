@@ -9,6 +9,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { routes } from './routes'
 import { AuthService} from './auth.service';
+import { UploadimgService } from './uploadimg.service';
 
 import { AppComponent } from './app.component';
 import { ConsoleComponent } from './console/console.component';
@@ -45,7 +46,7 @@ export const firebaseConfig = {
     AngularFireAuthModule
 
   ],
-  providers: [AuthService],
+  providers: [AuthService,UploadimgService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
