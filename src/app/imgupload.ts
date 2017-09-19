@@ -4,7 +4,7 @@ export class Imgupload {
     name: string;
     file: File;
 
-    url: string;
+    url="";
     progress: number;
 
     constructor(file: File,cate: string, id: string) {

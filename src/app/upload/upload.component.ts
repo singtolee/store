@@ -37,17 +37,8 @@ export class UploadComponent implements OnInit {
   }
 
   handleDrop(fileList: FileList) {
-
-    let fileIndex = _.range(fileList.length)
-    
-        _.each(fileIndex,(idx)=>{
-          this.currentUpload = new Imgupload(fileList[idx],this.newPrd.category,this.newPrd.id);
-          this.uploadService.pushUpload(this.currentUpload);
-          //this.prdImgUrls = this.af.list(`zIMGTEMPURLS/${this.pCate}/${this.pID}`);
-        })
-
-    //this.currentUpload = new Imgupload(img,this.newPrd.category,this.newPrd.id);
-    //this.uploadService.pushUpload(this.currentUpload);
+    this.currentUpload = new Imgupload(fileList[0],this.newPrd.category,this.newPrd.id);
+    this.uploadService.pushUpload(this.currentUpload);
   }
 
   ngOnInit() {
