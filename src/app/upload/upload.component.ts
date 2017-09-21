@@ -30,6 +30,8 @@ export class UploadComponent implements OnInit {
     this.newPrd = new Product();
     this.cates = af.list('/ProductCategory');
     this.suppliers = af.list('/Supplers');
+
+    this.currentUpload = new Imgupload();
   }
 
   dropzoneState($event: boolean){
@@ -37,7 +39,10 @@ export class UploadComponent implements OnInit {
   }
 
   handleDrop(fileList: FileList) {
-    this.currentUpload = new Imgupload(fileList[0],this.newPrd.category,this.newPrd.id);
+    //this.currentUpload = new Imgupload(fileList[0],this.newPrd.category,this.newPrd.id);
+    this.currentUpload.file = fileList[0];
+    this.currentUpload.category = this.newPrd.category;
+    this.currentUpload.prdID = this.newPrd.id;
     this.uploadService.pushUpload(this.currentUpload);
   }
 

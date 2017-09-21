@@ -4,14 +4,18 @@ export class Imgupload {
     name: string;
     file: File;
 
-    url="";
+    url:string;
     progress: number;
+
+    /*
 
     constructor(file: File,cate: string, id: string) {
         this.file = file;
         this.category = cate;
         this.prdID = id;
     }
+
+    */
 
 
 }
