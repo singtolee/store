@@ -13,15 +13,15 @@ export class UploadimgService {
     let storageRef = firebase.storage().ref();
     let uploadTask = storageRef.child(`PRODUCTIMAGES/${imgupload.category}/${imgupload.prdID}/${imgupload.file.name}`).put(imgupload.file);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-    (snapshot)=>{
+    function(snapshot){
       //uploading
-      //imgupload.progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      imgupload.progress = (uploadTask.snapshot.bytesTransferred/uploadTask.snapshot.totalBytes)*100;
     },
-    (error)=>{
+    function(error){
       //upload failed
       console.log(error);
     },
-    ()=>{
+    function(){
       //upload success
       imgupload.url = uploadTask.snapshot.downloadURL;
       imgupload.name = imgupload.file.name;
