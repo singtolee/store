@@ -26,6 +26,9 @@ export class UploadComponent implements OnInit {
 
   private newPrd:Product;
 
+  private cs="";
+  private qty=0;
+
   constructor(public afAuth:AngularFireAuth,public af:AngularFireDatabase,private uploadService: UploadimgService) {
     this.newPrd = new Product();
     this.cates = af.list('/ProductCategory');
@@ -44,6 +47,16 @@ export class UploadComponent implements OnInit {
     this.currentUpload.category = this.newPrd.category;
     this.currentUpload.prdID = this.newPrd.id;
     this.uploadService.pushUpload(this.currentUpload);
+  }
+
+  addCS2Array(cs:string,qty:number,url:string){
+    console.log(cs,qty,url);
+    this.newPrd.CS.push(cs);
+    this.cs="";
+    this.newPrd.QTY.push(qty);
+    this.qty=0;
+    this.newPrd.images.push(url);
+    console.log(this.newPrd);
   }
 
   ngOnInit() {

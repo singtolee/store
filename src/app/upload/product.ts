@@ -7,4 +7,11 @@ export class Product{
     isRefundable:boolean;
     supplier:string;
     category:string="Accessories";
+
+    //cs, qty. images, info-imgs Arrays
+
+    QTY:number[]=[];
+    CS:string[]=[];
+    images:string[]=[];
+    infoImages:string[]=[];
 }

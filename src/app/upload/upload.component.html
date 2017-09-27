@@ -67,22 +67,25 @@
           </div>
           <ng-template #elseBlock><div><span class="badge badge-danger">Non-Refundable</span></div></ng-template>
           <span class="badge badge-info">Package Info: {{newPrd.pack}}</span>
-        <div>
-          <span class="badge badge-primary">{{newPrd.category}}</span>
-        </div>
-        <div>
-          <span class="badge badge-dark">Supplier ID: {{newPrd.supplier}}</span>
-        </div>
+          <div>
+            <span class="badge badge-primary">{{newPrd.category}}</span>
+          </div>
+          <div>
+            <span class="badge badge-dark">Supplier ID: {{newPrd.supplier}}</span>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <img class="img-rounded" *ngFor="let urlImg of newPrd.images" src={{urlImg}} style="width:100%">
+          </div>
         </div>
       <div *ngIf="currentUpload.url">
         <img class="img-rounded" src={{currentUpload.url}} style="width:100%">
         <div class="input-group">
           <button class="btn btn-danger" type="button">DELETE</button>
           <span class="input-group-addon">CS</span>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" [(ngModel)]="cs">
           <span class="input-group-addon">QTY</span>
-          <input type="number" class="form-control">
-          <button class="btn btn-secondary" type="button">Save</button>
+          <input type="number" class="form-control" [(ngModel)]="qty">
+          <button class="btn btn-secondary" type="button" (click)="addCS2Array(cs,qty,currentUpload.url)">Save</button>
 
         </div>
 
