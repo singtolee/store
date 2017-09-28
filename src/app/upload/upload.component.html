@@ -73,12 +73,13 @@
           <div>
             <span class="badge badge-dark">Supplier ID: {{newPrd.supplier}}</span>
           </div>
-          <div class="col-sm-4 col-md-2">
-            <img class="img-rounded" *ngFor="let urlImg of newPrd.images" src={{urlImg}} style="width:100%">
-          </div>
         </div>
+      </div>
+      <div class="col-sm-3 col-xs-3 col-md-3" *ngFor="let urlImg of newPrd.images">
+        <img class="img-rounded" src={{urlImg}} style="width:100%">
+      </div>
       <div *ngIf="currentUpload.url">
-        <img class="img-rounded" src={{currentUpload.url}} style="width:100%">
+        <img class="img-rounded" src={{currentUpload.url}} style="width:50%">
         <div class="input-group">
           <button class="btn btn-danger" type="button">DELETE</button>
           <span class="input-group-addon">CS</span>
@@ -86,10 +87,7 @@
           <span class="input-group-addon">QTY</span>
           <input type="number" class="form-control" [(ngModel)]="qty">
           <button class="btn btn-secondary" type="button" (click)="addCS2Array(cs,qty,currentUpload.url)">Save</button>
-
         </div>
-
-      </div>
       </div>
     </div>
   </div>
