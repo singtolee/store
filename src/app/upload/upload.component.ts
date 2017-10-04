@@ -50,13 +50,64 @@ export class UploadComponent implements OnInit {
   }
 
   addCS2Array(cs:string,qty:number,url:string){
-    console.log(cs,qty,url);
+    //console.log(cs,qty,url);
     this.newPrd.CS.push(cs);
     this.cs="";
     this.newPrd.QTY.push(qty);
     this.qty=0;
     this.newPrd.images.push(url);
-    console.log(this.newPrd);
+    //console.log(this.newPrd);
+  }
+
+  add2InfoImg(url:string){
+    this.newPrd.infoImages.push(url);
+  }
+
+  deleteImgByUrl(url:string){
+    let imgRef = firebase.storage().refFromURL(url);
+    imgRef.delete().then(()=>{
+      this.currentUpload.url="";
+    }).catch(error=>console.log(error));
+  }
+
+  removeFromArray(index:number){
+
+    //console.log(index);
+
+    let imgRef=firebase.storage().refFromURL(this.newPrd.images[index]);
+    imgRef.delete().then(()=>{
+      console.log(index);
+      this.newPrd.images.splice(index,1);
+      this.newPrd.CS.splice(index,1);
+      this.newPrd.QTY.splice(index,1);
+    }).catch(error=>console.log(error));
+  }
+
+  removeInfoImgArray(index:number){
+    let imgRef = firebase.storage().refFromURL(this.newPrd.infoImages[index]);
+    imgRef.delete().then(()=>{
+      this.newPrd.infoImages.splice(index,1);
+    }).catch(error=>console.log(error));
+  }
+
+  savefullPrd(){
+    //short version product info
+    var shortPrd = {
+      productMainImage:this.newPrd.images[0],
+      productName:this.newPrd.name,
+      productPrice:this.newPrd.price,
+      productSubDetail:this.newPrd.descrp
+    };
+    //generate a new key for the new product
+    var newKey = firebase.database().ref().child('AllProduct').push().key;
+
+    var updates = {};
+    updates['AllProduct/' + newKey] = this.newPrd;
+    updates['Each_Category/' + this.newPrd.category + '/' + newKey] = shortPrd;
+    updates['Each_Suppler/' + this.newPrd.supplier + '/' + newKey] = shortPrd;
+
+    //save to three folders simultaneously
+    return firebase.database().ref().update(updates);
   }
 
   ngOnInit() {
