@@ -24,7 +24,7 @@ export class UploadComponent implements OnInit {
   cates: FirebaseListObservable<any[]>;
   suppliers: FirebaseListObservable<any[]>;
 
-  private newPrd:Product;
+  public newPrd:Product;
 
   private cs="";
   private qty=0;

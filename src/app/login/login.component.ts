@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
 
   state:string='';
   error:any;
+  //why have to add these two var
+  email:string;
+  password:string;
 
   constructor(private afAuth:AngularFireAuth,private router:Router){
     this.afAuth.authState.subscribe(
